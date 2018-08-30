@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/donglaiw/EM-segLib
+	branch = master
+	commit = 01d835f0fccce21e319a57f78f214e5b889fb50f
+	parent = c7a130212e61e62d8d89110610c8b9fbaef3b615
+	cmdver = 0.3.1

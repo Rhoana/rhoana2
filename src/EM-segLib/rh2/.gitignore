@@ -1,0 +1,9 @@
+build/
+dist/
+em_segLib/*.cpp
+em_segLib/*.c
+*.sw*
+*.pyc
+*.so
+*.egg-info/
+
