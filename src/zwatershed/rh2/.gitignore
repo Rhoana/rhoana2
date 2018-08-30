@@ -1,0 +1,8 @@
+.idea
+dist
+*egg*
+*.pyc
+build
+*checkpoints*
+*.nfs
+*.sw*

@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/donglaiw/zwatershed
+	branch = master
+	commit = 469fdf0a9bb6b63efb89363ae97a8a9416d32d1c
+	parent = 6321a0e92e71c56e0e1f98c8b988d9ad2b0555b0
+	cmdver = 0.3.1

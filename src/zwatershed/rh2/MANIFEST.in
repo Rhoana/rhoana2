@@ -1,0 +1,6 @@
+include README.md
+include make.sh
+recursive-include zwatershed *.hpp
+recursive-include zwatershed *.pyx
+recursive-include zwatershed *.h
+include zwatershed/zwatershed_main.cpp
