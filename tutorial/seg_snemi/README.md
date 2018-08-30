@@ -2,12 +2,6 @@
 
 ## 1. Preparation
 
-- Install Minicoda [python 2.7](https://conda.io/miniconda.html)
-
-- Change script permission: `chmod +x *.sh`
-
-- Install github repos: `./install_snemi3d.sh`
-
 - Download data: `./download_data.sh`
 
 ## 2. Pipeline
