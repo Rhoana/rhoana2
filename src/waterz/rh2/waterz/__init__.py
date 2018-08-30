@@ -240,6 +240,6 @@ def agglomerate(
     return __import__(module_name).agglomerate(affs, thresholds, gt, fragments, aff_threshold_low, aff_threshold_high, return_merge_history)
 
 
-from seg_watershed import watershed
-from seg_util import create_border_mask
-from seg_waterz import waterz
+from .seg_watershed import watershed
+from .seg_util import create_border_mask
+from .seg_waterz import waterz

@@ -5,7 +5,7 @@ import json
 
 from seg_watershed import watershed
 from seg_util import create_border_mask, writeh5
-from waterz import agglomerate
+from . import agglomerate
 
 def getScoreFunc(scoreF):
     # aff50_his256
