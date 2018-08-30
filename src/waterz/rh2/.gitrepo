@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/donglaiw/waterz
+	branch = v0.8-dw
+	commit = d4fed99807ecb3dee7cd0ac2279af79321946cb3
+	parent = 7f824f7cdd5c7f357ffb091a02048b75487da845
+	cmdver = 0.3.1
