@@ -1,0 +1,11 @@
+build/
+dist/
+*egg-info*
+*.sw*
+*~
+*.pyc
+
+em_pre/*.cpp
+em_pre/*.c
+
+tmp/

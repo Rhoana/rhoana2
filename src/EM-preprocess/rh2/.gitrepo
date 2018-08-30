@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/donglaiw/EM-preprocess
+	branch = master
+	commit = bc810061855493b033e6892a9a98ff4630d5f7f7
+	parent = 61f4d23c4fab888525bd2ef52403f0bf7ebd1d55
+	cmdver = 0.3.1
