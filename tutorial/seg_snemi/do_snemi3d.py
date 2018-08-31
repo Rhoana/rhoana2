@@ -4,11 +4,11 @@ import numpy as np
 import time
 import tifffile
 
-import em_segLib
-from em_segLib.seg_dist import DilateData
-from em_segLib.seg_util import relabel
-from em_segLib.io_util import writeh5
-from em_segLib.seg_eval import adapted_rand
+import rh2
+from rh2.em_segLib.seg_dist import DilateData
+from rh2.em_segLib.seg_util import relabel
+from rh2.em_segLib.io_util import writeh5
+from rh2.em_segLib.seg_eval import adapted_rand
 # example: python do_snemi3d.py 0 0 1
 
 
@@ -43,7 +43,7 @@ if opt =='0':
                                 T_dust=T_dust, T_merge=T_merge,T_aff_relative=T_aff_rel)[0][0]
     et = time.time()
     out = relabel(out)
-    sn = '%s_%f_%f_%d_%f_%d_%f_%d.h5'%(opt,T_aff[0],T_aff[1],T_thres[0],T_aff[2],T_dust,T_merge) 
+    sn = '%s_%f_%f_%d_%f_%d_%f_%d.h5'%(opt,T_aff[0],T_aff[1],T_thres[0],T_aff[2],T_dust,T_merge,T_aff_rel) 
 elif opt =='1':
     # 2D watershed + waterz
     import waterz
