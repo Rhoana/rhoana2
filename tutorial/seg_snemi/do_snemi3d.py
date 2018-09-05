@@ -31,7 +31,7 @@ if mode==0:
 
 if opt =='0': 
     # 3D zwatershed
-    import zwatershed
+    import rh2.zwatershed as zwatershed
     print 'zwatershed'
     st = time.time()
     T_aff=[0.05,0.995,0.2]
@@ -46,7 +46,7 @@ if opt =='0':
     sn = '%s_%f_%f_%d_%f_%d_%f_%d.h5'%(opt,T_aff[0],T_aff[1],T_thres[0],T_aff[2],T_dust,T_merge,T_aff_rel) 
 elif opt =='1':
     # 2D watershed + waterz
-    import waterz
+    import rh2.waterz as waterz
     print 'waterz-0.8'
     st = time.time()
     low=0.05;high=0.995
@@ -58,8 +58,8 @@ elif opt =='1':
     sn = '%s_%f_%f_%f_%s.h5'%(opt,low,high,T_thres[0],mf) 
 elif opt =='2':
     # 2D zwatershed + waterz
-    import waterz
-    import zwatershed
+    import rh2.waterz as waterz
+    import rh2.zwatershed as zwatershed
     print 'zwatershed + waterz'
     st = time.time()
     T_thres = [800]
