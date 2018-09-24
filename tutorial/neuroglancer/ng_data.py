@@ -9,7 +9,7 @@ import tifffile
 #### TO CHANGE
 ip='140.247.107.75'
 pp=98092
-DD='/n/coxfs01/donglai/data/SNEMI3D/'
+DD='/mnt/coxfs01/donglai/data/SNEMI3D/'
 
 
 neuroglancer.set_server_bind_address(bind_address=ip,bind_port=pp)
@@ -30,7 +30,7 @@ with viewer.txn() as s:
         ))
 
 print 'load gt'
-im = tifffile.imread(DD+'train-labels.tif')
+gt = tifffile.imread(DD+'train-labels.tif')
 with viewer.txn() as s:
     s.layers.append(
         name='gt',
