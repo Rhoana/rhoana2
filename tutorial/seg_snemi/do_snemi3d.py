@@ -62,9 +62,9 @@ elif opt =='2':
     import rh2.zwatershed as zwatershed
     print 'zwatershed + waterz'
     st = time.time()
-    T_thres = [800]
-    T_aff=[0.05,0.95,0.2]
-    T_dust=600
+    T_thres = [150]
+    T_aff=[0.05,0.8,0.2]
+    T_dust=150
     T_merge=0.9
     T_aff_rel=1
     sz = np.array(aff.shape)
