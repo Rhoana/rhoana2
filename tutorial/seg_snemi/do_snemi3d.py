@@ -45,7 +45,7 @@ if opt =='0':
     out = relabel(out)
     sn = '%s_%f_%f_%d_%f_%d_%f_%d.h5'%(opt,T_aff[0],T_aff[1],T_thres[0],T_aff[2],T_dust,T_merge,T_aff_rel) 
 elif opt =='1':
-    # 2D watershed + waterz
+    # waterz
     import rh2.waterz as waterz
     print 'waterz-0.8'
     st = time.time()
