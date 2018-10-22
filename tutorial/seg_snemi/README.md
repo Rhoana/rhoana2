@@ -13,8 +13,7 @@
 
 ### 2.3. Segmentation and Evaluation
 - METHOD_ID: 0=zwatershed, 1=waterz, 2=zwatershed+waterz
-- DO_TRAIN: 0=train, 1=test
 - SAVE_SEG: 0=no save
 ```
-python do_snemi3d.py METHOD_ID DO_TRAIN SAVE_SEG
+python do_snemi3d.py METHOD_ID SAVE_SEG
 ```
