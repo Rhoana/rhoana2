@@ -9,15 +9,14 @@ from rh2.em_segLib.seg_dist import DilateData
 from rh2.em_segLib.seg_util import relabel
 from rh2.em_segLib.io_util import writeh5
 from rh2.em_segLib.seg_eval import adapted_rand
-# example: python do_snemi3d.py 0 0 1
+# example: python do_snemi3d.py 0 1
 
 
 opt = sys.argv[1] # 0: ..
-mode = int(sys.argv[2]) # 0: train, 1: test
-nn = ['train','test'][mode]
+nn = 'train'
 do_save=0
-if len(sys.argv)>3:
-    do_save = int(sys.argv[3]) # 1: save
+if len(sys.argv)>2:
+    do_save = int(sys.argv[2]) # 1: save
 
 ## TODO:
 # add affinity location
@@ -25,9 +24,9 @@ D_aff='/n/coxfs01/vcg_connectomics/snemi/affs/tmquan_0524_v2/model_snemi_dice_ml
 aff = np.array(h5py.File(D_aff)['main']) 
 
 # ground truth
-if mode==0:
-    D0='/n/coxfs01/donglai/data/SNEMI3D/'
-    seg = tifffile.imread(D0+nn+'-labels.tif').astype(np.uint32)
+
+D0='/n/coxfs01/donglai/data/SNEMI3D/'
+seg = tifffile.imread(D0+nn+'-labels.tif').astype(np.uint32)
 
 if opt =='0': 
     # 3D zwatershed
