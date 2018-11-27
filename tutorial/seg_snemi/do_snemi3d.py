@@ -14,18 +14,18 @@ from rh2.em_segLib.seg_eval import adapted_rand
 
 opt = sys.argv[1] # 0: ..
 nn = 'train'
-do_save=0
+do_save = 0
 if len(sys.argv)>2:
     do_save = int(sys.argv[2]) # 1: save
 
 ## TODO:
 # add affinity location
-D_aff='/n/coxfs01/vcg_connectomics/snemi/affs/tmquan_0524_v2/model_snemi_dice_mls._'+nn+'_min.h5'
+D_aff='model_snemi_dice_mls._'+nn+'_min.h5'
 aff = np.array(h5py.File(D_aff)['main']) 
 
 # ground truth
 
-D0='/n/coxfs01/donglai/data/SNEMI3D/'
+D0='./'
 seg = tifffile.imread(D0+nn+'-labels.tif').astype(np.uint32)
 
 if opt =='0': 
@@ -84,7 +84,7 @@ elif opt =='2':
 
 print 'time: %.1f s'%((et-st))
 # do evaluation
-if mode==0:
+if nn == 'train':
     score = adapted_rand(out.astype(np.uint32), seg)
     print score 
     # 0: 0.22
@@ -92,4 +92,7 @@ if mode==0:
     # 2: 0.137
 # do save
 if do_save==1:
-    writeh5('result/'+sn+'.h5', 'main', out)
+    result_dir = 'result'
+    if not os.path.exists(result_dir):
+        os.makedirs(result_dir)
+    writeh5( result_dir + sn + '.h5', 'main', out)

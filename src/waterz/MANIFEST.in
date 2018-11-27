@@ -1,5 +1,5 @@
 include README.md
-recursive-include waterz *.hpp
-recursive-include waterz *.pyx
-recursive-include waterz *.h
-include waterz/c_frontend.cpp
+recursive-include rh2/waterz *.hpp
+recursive-include rh2/waterz *.pyx
+recursive-include rh2/waterz *.h
+include rh2/waterz/c_frontend.cpp
