@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: em-pre
+Version: 0.1
+Summary: cython implementation of Deformation Models for Image Recognition
+Home-page: https://github.com/donglaiw/IDM
+Author: Donglai Wei
+Author-email: weiddoonngglai@gmail.com
+License: Apache 2.0
+Description: UNKNOWN
+Platform: UNKNOWN
