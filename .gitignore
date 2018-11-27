@@ -1,3 +1,6 @@
-# no tmp file
+# no tmp txt file
 *~
 .*sw*
+
+*.egg-info*
+*/build/
