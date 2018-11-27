@@ -1,0 +1,5 @@
+include README.md
+recursive-include rh2/waterz *.hpp
+recursive-include rh2/waterz *.pyx
+recursive-include rh2/waterz *.h
+include rh2/waterz/c_frontend.cpp
