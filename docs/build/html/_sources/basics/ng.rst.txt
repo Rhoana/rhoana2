@@ -1,7 +1,7 @@
-L1. Neuroglancer
-==========================
+L1. 3D Volume Visualization
+=============================
 
-3D image stack and segmentation visualization
+We use `neuroglancer <https://github.com/google/neuroglancer>`_ for 3D image stack and segmentation visualization
     
 #. (Windows Only) Install `Microsoft Visual C++
    <https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017>`_ (Community version)

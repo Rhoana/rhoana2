@@ -34,7 +34,7 @@ html_theme_options = {
     'logo_only': True,
 }
 
-html_logo = '_static/img/rhoana_logo.png'
+html_logo = '_static/img/rhoana_logo.jpg'
 html_static_path = ['_static']
 html_context = {'css_files': ['_static/css/custom.css']}
 

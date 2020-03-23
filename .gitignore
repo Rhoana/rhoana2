@@ -3,4 +3,3 @@
 .*sw*
 
 *.egg-info*
-*/build/
