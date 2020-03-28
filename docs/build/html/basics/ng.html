@@ -160,9 +160,9 @@
 <li><p>Install Python Package Manager (<a class="reference external" href="https://conda.io/en/latest/miniconda.html">Miniconda</a>)</p></li>
 <li><p>Install Neuroglancer</p>
 <blockquote>
-<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda create -n ng
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda create -n ng python=3.7
 conda activate ng
-conda install pip imageio h5py numpy
+conda install pip imageio h5py numpy tornado=5.1.1
 pip install neuroglancer==1.1.6
 # optional for jupyter kernel
 conda install ipykernel
@@ -174,7 +174,7 @@ python -m ipykernel install --user --name ng --display-name &quot;ng&quot;
 <li><p>Example:</p>
 <ol class="arabic simple">
 <li><p>(Optional) <a class="reference external" href="http://hp03.mindhackers.org/rhoana_product/dataset/snemi.zip">Download</a> SNEMI neuron segmentation dataset</p></li>
-<li><p>Open a jupyter notebook (choose “ng” kernel) or <cite>python -i THIS_FILE.py</cite> (in “ng” conda env)</p></li>
+<li><p><cite>python -i THIS_FILE.py</cite> (in “ng” conda env) or open a jupyter notebook (choose “ng” kernel)</p></li>
 </ol>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">neuroglancer</span>
@@ -192,25 +192,51 @@ python -m ipykernel install --user --name ng --display-name &quot;ng&quot;
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;load im and gt seg&#39;</span><span class="p">)</span>
 <span class="c1"># 3d vol dim: z,y,x</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">volread</span><span class="p">(</span><span class="n">D0</span><span class="o">+</span><span class="s1">&#39;image/train-input.tif&#39;</span><span class="p">)</span>
-<span class="n">gt</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">volread</span><span class="p">(</span><span class="n">D0</span><span class="o">+</span><span class="s1">&#39;seg/train-labels.tif&#39;</span><span class="p">)</span>
+<span class="n">gt</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">volread</span><span class="p">(</span><span class="n">D0</span><span class="o">+</span><span class="s1">&#39;seg/train-labels.tif&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">ngLayer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">res</span><span class="p">,</span><span class="n">oo</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">tt</span><span class="o">=</span><span class="s1">&#39;segmentation&#39;</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">neuroglancer</span><span class="o">.</span><span class="n">LocalVolume</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">volume_type</span><span class="o">=</span><span class="n">tt</span><span class="p">,</span><span class="n">voxel_size</span><span class="o">=</span><span class="n">res</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="n">oo</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">viewer</span><span class="o">.</span><span class="n">txn</span><span class="p">()</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;im&#39;</span><span class="p">,</span>
-        <span class="n">layer</span><span class="o">=</span><span class="n">neuroglancer</span><span class="o">.</span><span class="n">LocalVolume</span><span class="p">(</span>
-            <span class="n">data</span><span class="o">=</span><span class="n">im</span><span class="p">,</span>
-            <span class="n">voxel_size</span><span class="o">=</span><span class="n">res</span>
-        <span class="p">))</span>
-
-<span class="k">with</span> <span class="n">viewer</span><span class="o">.</span><span class="n">txn</span><span class="p">()</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;gt&#39;</span><span class="p">,</span>
-        <span class="n">layer</span><span class="o">=</span><span class="n">neuroglancer</span><span class="o">.</span><span class="n">LocalVolume</span><span class="p">(</span>
-            <span class="n">data</span><span class="o">=</span><span class="n">gt</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">),</span>
-            <span class="n">voxel_size</span><span class="o">=</span><span class="n">res</span>
-        <span class="p">))</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;im&#39;</span><span class="p">,</span><span class="n">layer</span><span class="o">=</span><span class="n">ngLayer</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">res</span><span class="p">,</span><span class="n">tt</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">))</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;gt&#39;</span><span class="p">,</span><span class="n">layer</span><span class="o">=</span><span class="n">ngLayer</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span><span class="n">res</span><span class="p">))</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">viewer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>(Optional) Create 3D volume in h5 from 2D slices</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">imageio</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="k">def</span> <span class="nf">folder2Vol</span><span class="p">(</span><span class="n">Do</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">,</span><span class="n">maxF</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">ratio</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">fns</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># ratio: downsample ratio for (z,y,x) dimension</span>
+    <span class="k">if</span> <span class="n">fns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fns</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">Do</span><span class="o">+</span><span class="s1">&#39;*.png&#39;</span><span class="p">))</span>
+    <span class="n">numF</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fns</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">maxF</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">numF</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">numF</span><span class="p">,</span><span class="n">maxF</span><span class="p">)</span>
+    <span class="n">numF</span> <span class="o">=</span> <span class="n">numF</span><span class="o">//</span><span class="n">ratio</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">sz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">imread</span><span class="p">(</span><span class="n">fns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">shape</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span><span class="o">//</span><span class="n">ratio</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="n">vol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numF</span><span class="p">,</span><span class="n">sz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">sz</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">zi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numF</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fns</span><span class="p">[</span><span class="n">zi</span><span class="o">*</span><span class="n">ratio</span><span class="p">[</span><span class="mi">0</span><span class="p">]]):</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">fns</span><span class="p">[</span><span class="n">zi</span><span class="o">*</span><span class="n">ratio</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+            <span class="k">if</span> <span class="n">tmp</span><span class="o">.</span><span class="n">ndim</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">vol</span><span class="p">[</span><span class="n">zi</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[::</span><span class="n">ratio</span><span class="p">[</span><span class="mi">1</span><span class="p">],::</span><span class="n">ratio</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">vol</span>
+<span class="c1"># read a folder of image files into vol at full resolution</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="n">folder2Vol</span><span class="p">(</span><span class="n">Do</span><span class="p">)</span>
+<span class="c1"># read the first 10 images in a folder</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="n">folder2Vol</span><span class="p">(</span><span class="n">Do</span><span class="p">,</span> <span class="n">maxF</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># read a folder of image files into vol with downsampled (z,y,x) resolution</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="n">folder2Vol</span><span class="p">(</span><span class="n">Do</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
 </div></blockquote>
