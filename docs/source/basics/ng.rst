@@ -22,9 +22,9 @@ We use `neuroglancer <https://github.com/google/neuroglancer>`_ for 3D image sta
 
 #. Example: 
 
-   *. (Optional) `Download <http://hp03.mindhackers.org/rhoana_product/dataset/snemi.zip>`_ SNEMI neuron segmentation dataset
+   * (Optional) `Download <http://hp03.mindhackers.org/rhoana_product/dataset/snemi.zip>`_ SNEMI neuron segmentation dataset
    
-   *. `python -i THIS_FILE.py` (in "ng" conda env) or open a jupyter notebook (choose "ng" kernel)
+   * `python -i THIS_FILE.py` (in "ng" conda env) or open a jupyter notebook (choose "ng" kernel)
 
     .. code-block:: python
         
@@ -54,7 +54,7 @@ We use `neuroglancer <https://github.com/google/neuroglancer>`_ for 3D image sta
 
         print(viewer)
 
-   *. (Optional) Create 3D volume in h5 from 2D slices
+   * (Optional) Create 3D volume in h5 from 2D slices
 
     .. code-block:: python
         
