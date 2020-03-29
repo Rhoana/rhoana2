@@ -24,7 +24,7 @@ We use `neuroglancer <https://github.com/google/neuroglancer>`_ for 3D image sta
 
    * (Optional) `Download <http://hp03.mindhackers.org/rhoana_product/dataset/snemi.zip>`_ SNEMI neuron segmentation dataset
    
-   * `python -i THIS_FILE.py` (in "ng" conda env) or open a jupyter notebook (choose "ng" kernel)
+   * ``python -i THIS_FILE.py`` (in "ng" conda env) or open a jupyter notebook (choose "ng" kernel)
 
     .. code-block:: python
         
