@@ -17,7 +17,7 @@ We use `neuroglancer <https://github.com/google/neuroglancer>`_ for 3D image sta
         conda install pip imageio h5py numpy tornado=5.1.1
         pip install neuroglancer==1.1.6
         # optional for jupyter kernel
-        conda install ipykernel
+        conda install jupyter ipykernel
         python -m ipykernel install --user --name ng --display-name "ng"
 
 #. Example: 
