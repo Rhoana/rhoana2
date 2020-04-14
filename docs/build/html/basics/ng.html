@@ -240,6 +240,18 @@ python -m ipykernel install --user --name ng --display-name &quot;ng&quot;
 </pre></div>
 </div>
 </div></blockquote>
+<ul class="simple">
+<li><p>(Optional) Port forwarding. First, run neuroglancer on a server machine (e.g. coxgpu01). Then, on your local macine terminal:</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># local machine -&gt; rc login machine. (98092 can be any big number)</span>
+ssh -L <span class="m">98092</span>:localhost:98092 xx@login.rc.fas.harvard.edu
+
+<span class="c1"># rc login machine -&gt; server machine (e.g., coxgpu01) (the last number to match the port in the code)</span>
+ssh -L <span class="m">98092</span>:localhost:98092 coxgpu01
+</pre></div>
+</div>
+</div></blockquote>
 </li>
 </ol>
 </div>

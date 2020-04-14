@@ -86,3 +86,15 @@ We use `neuroglancer <https://github.com/google/neuroglancer>`_ for 3D image sta
         vol = folder2Vol(Do, maxF=10)
         # read a folder of image files into vol with downsampled (z,y,x) resolution 
         vol = folder2Vol(Do, ratio=[2,2,2])
+
+   * (Optional) Port forwarding. First, run neuroglancer on a server machine (e.g. coxgpu01). Then, on your local macine terminal:
+
+    .. code-block:: bash
+        
+        # local machine -> rc login machine. (98092 can be any big number)
+        ssh -L 98092:localhost:98092 xx@login.rc.fas.harvard.edu
+
+        # rc login machine -> server machine (e.g., coxgpu01) (the last number to match the port in the code)
+        ssh -L 98092:localhost:98092 coxgpu01
+        
+        
