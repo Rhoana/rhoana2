@@ -4,7 +4,7 @@ L1. 3D Volume Visualization
 We use `neuroglancer <https://github.com/google/neuroglancer>`_ for 3D image stack and segmentation visualization
     
 #. (Windows Only) Install `Microsoft Visual C++
-   <https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017>`_ (Community version)
+   <https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017>`_ (Community version, select "Python Development" and "Desktop C++ Development")
 
 #. Install Python Package Manager (`Miniconda <https://conda.io/en/latest/miniconda.html>`_)
 
