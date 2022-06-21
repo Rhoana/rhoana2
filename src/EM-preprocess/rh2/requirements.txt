@@ -6,4 +6,4 @@ idna==2.7
 ipaddress==1.0.22
 Mastodon.py==1.3.0
 mkl==2018.0.3
-numpy==1.14.5
+numpy==1.22.0
